@@ -11,7 +11,7 @@
         <version>3.8.1</version>
         <configuration>
           <release>25</release>
-        </configuration>
+        </configuration>  
       </plugin>
     </plugins>
   </build>
