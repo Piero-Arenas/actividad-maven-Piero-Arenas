@@ -227,6 +227,9 @@ public class Shop {
 			String Linea = "";
 			while((Linea = bf.readLine()) != null){
 				Product product = parseProductLine(Linea);
+				if (product != null) {
+					addProduct(product);
+				}
 			}
 		} catch (FileNotFoundException e) {
 			// TODO RA1-ISSUE-11: tractar fitxer absent o error de lectura amb un missatge comprensible.
@@ -245,9 +248,38 @@ public class Shop {
 	 */
 	private Product parseProductLine(String line) {
 		// TODO RA1-ISSUE-04: validar camps, convertir preu i estoc, i retornar un Product.
+		try {
+			String[] parts = line.split(",");
+			String nom = "";
+			double preu = 0.0;
+			int stock = 0;
+			boolean available = true;
+			
+			for (String part : parts) {
+				String[] keyValue = part.split("=");
+				if (keyValue.length == 2) { // Para asegurarse de que la division genere clave y valor
+					String key = keyValue[0].trim();
+					String value = keyValue[1].trim();
+
+					if (key.equalsIgnoreCase("nom")) {
+						nom = value;
+					} else if (key.equalsIgnoreCase("preu")) {
+						preu = Double.parseDouble(value);
+					} else if (key.equalsIgnoreCase("stock")) {
+						stock = Integer.parseInt(value);
+					} else if (key.equalsIgnoreCase("available")) {
+						available = Boolean.parseBoolean(value);
+					}
+				}
+			}
+			if (!nom.isEmpty()) {
+				return new Product(nom, new Amount(preu), available, stock);
+			}
+		} catch (Exception e) {
+		}
 		// TODO RA1-ISSUE-05: decidir com es tracten les linies mal formades.
 		return null;
-	}
+	}	
 
 	/**
 	 * Save the current inventory to items.txt.
