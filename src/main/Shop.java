@@ -212,6 +212,7 @@ public class Shop {
 //		addProduct(new Product("Pera", new Amount(20.00), true, 20));
 //		addProduct(new Product("Hamburguesa", new Amount(30.00), true, 30));
 //		addProduct(new Product("Fresa", new Amount(5.00), true, 20));
+//		addProduct(new Product("Fresa", new Amount(mal), true, error)); // Error del Issue 5
 		// now read from file
 		this.readInventory();
 	}
@@ -274,12 +275,15 @@ public class Shop {
 			}
 			if (!nom.isEmpty()) {
 				return new Product(nom, new Amount(preu), available, stock);
+			} else {
+				System.out.println("ERROR: Error la línia aquesta incompleta o sense nom vàlid, línia: " + line);
 			}
 		} catch (Exception e) {
+			System.out.println("ERROR: Error en processar la línia amb error ('" + line + "'): " + e.getMessage());
 		}
 		// TODO RA1-ISSUE-05: decidir com es tracten les linies mal formades.
 		return null;
-	}	
+	}
 
 	/**
 	 * Save the current inventory to items.txt.
