@@ -290,9 +290,23 @@ public class Shop {
 	 */
 	public void saveInventory() {
 		// TODO RA1-ISSUE-09: convertir cada Product en una linia i reescriure items.txt.
-		System.out.println("RA1-ISSUE-09 pendent: encara no s'ha desat l'inventari.");
+		File f = new File(System.getProperty("user.dir") + File.separator + "files" + File.separator + ITEMS_FILE);
+		try (PrintWriter pw = new PrintWriter(new FileWriter(f))) {
+			for (Product product : inventory) {
+				if (product != null) {
+					String line = "nom=" + product.getName() + 
+								  ",preu=" + product.getPublicPrice() +
+								  ",available=" + product.isAvailable() +
+								  ",stock=" + product.getStock();
+					pw.println(line);
+				}
+			}
+			System.out.println("L'inventari s'ha desat al fixer " + ITEMS_FILE);
+		} catch (IOException e) {
+			System.out.println("ERROR: No s'ha pogut desar l'inventari al fitxer: " + e.getMessage());
+		}
 	}
-
+	
 	/**
 	 * show current total cash
 	 */
