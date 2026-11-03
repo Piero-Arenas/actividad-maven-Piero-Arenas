@@ -1,5 +1,6 @@
-nom=Manzana,preu=20,00€,available=true,stock=10
-nom=Pera,preu=40,00€,available=true,stock=20
-nom=Hamburguesa,preu=60,00€,available=true,stock=30
-nom=Fresa,preu=10,00€,available=true,stock=20
-nom=Platano,preu=30,00€,available=true,stock=15
+nom=MSI Gaming,preu=3900.0,available=true,stock=23
+nom=USB,preu=25.0,available=true,stock=20
+nom=Teclat,preu=39.0,available=true,stock=30
+nom=Monitor,preu=500.0,available=true,stock=20
+nom=Ratolí,preu=30.0,available=true,stock=22
+nom=Altaveu,preu=50.0,available=true,stock=12

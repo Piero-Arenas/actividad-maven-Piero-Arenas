@@ -28,7 +28,7 @@ public class Shop {
 	private int numberSales;
 
 	final static double TAX_RATE = 1.04;
-	private static final String ITEMS_FILE = "items.txt";
+	private static final String ITEMS_FILE = "items.txt"; // Issue-11: Simula l'absencia d'un fitxer de dades "erroritems.txt"
 
 	public Shop() {
 		inventory = new ArrayList<Product>();
@@ -208,11 +208,11 @@ public class Shop {
 	 * load initial inventory to shop
 	 */
 	public void loadInventory() {
-//		addProduct(new Product("Manzana", new Amount(10.00), true, 10));
-//		addProduct(new Product("Pera", new Amount(20.00), true, 20));
-//		addProduct(new Product("Hamburguesa", new Amount(30.00), true, 30));
-//		addProduct(new Product("Fresa", new Amount(5.00), true, 20));
-//		addProduct(new Product("Fresa", new Amount(mal), true, error)); // Error del Issue 5
+//		addProduct(new Product("MSI Gaming", new Amount(3900.00), true, 23));
+//		addProduct(new Product("USB", new Amount(25.00), true, 20));
+//		addProduct(new Product("Teclat", new Amount(39.00), true, 30));
+//		addProduct(new Product("Monitor", new Amount(500.00), true, 20));
+//		addProduct(new Product("Ratolí", new Amount(mal), true, error)); // Error del Issue 5
 		// now read from file
 		this.readInventory();
 	}
@@ -234,6 +234,7 @@ public class Shop {
 			}
 		} catch (FileNotFoundException e) {
 			// TODO RA1-ISSUE-11: tractar fitxer absent o error de lectura amb un missatge comprensible.
+			System.out.println("Error: No s'ha trobat el fitxer del inventari '" + ITEMS_FILE +"'.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -295,7 +296,7 @@ public class Shop {
 			for (Product product : inventory) {
 				if (product != null) {
 					String line = "nom=" + product.getName() + 
-								  ",preu=" + product.getPublicPrice() +
+								  ",preu=" + product.getWholesalerPrice().getValue() +
 								  ",available=" + product.isAvailable() +
 								  ",stock=" + product.getStock();
 					pw.println(line);
@@ -366,7 +367,7 @@ public class Shop {
 		String name = scanner.next();
 		Product product = findProduct(name);
 		if (product != null) {
-			System.out.print("Introdueix el seu estoc: ");
+			System.out.print("Introdueix la quantitat d'estoc que va augmentar: ");
 			int quantity = scanner.nextInt();
 			product.setStock(product.getStock() + quantity);
 			System.out.println("S'ha modificat l'estoc de l'article " + name +". Nou estoc: " + product.getStock());
