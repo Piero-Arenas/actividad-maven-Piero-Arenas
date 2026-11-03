@@ -1,0 +1,5 @@
+nom=Manzana,preu=20,00€,available=true,stock=10
+nom=Pera,preu=40,00€,available=true,stock=20
+nom=Hamburguesa,preu=60,00€,available=true,stock=30
+nom=Fresa,preu=10,00€,available=true,stock=20
+nom=Platano,preu=30,00€,available=true,stock=15

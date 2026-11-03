@@ -9,8 +9,8 @@ public class Employee extends Person implements Logable{
 	// Simulated RA1 login using a text file, without JDBC or database access.
 	private Dao dao = new DaoImplFile();
 	
-//	public static final int USER = 123;
-//	public static final String PASSWORD = "test";
+	public static final int USER = 123;
+	public static final String PASSWORD = "test";
 	
 	public Employee(String name) {
 		super(name);
@@ -60,9 +60,9 @@ public class Employee extends Person implements Logable{
 	 */
 	@Override
 	public boolean login(int user, String password) {
-//		if (USER == user && PASSWORD.equals(password)) {
-//			return true;
-//		} 
+		if (USER == user && PASSWORD.equals(password)) {
+			return true;
+		} 
 		boolean success = false;
 		
 		// connect to file data

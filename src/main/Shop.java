@@ -241,7 +241,7 @@ public class Shop {
 		
 		// TODO RA1-ISSUE-04: delegar la conversio de cada linia a parseProductLine.
 		// TODO RA1-ISSUE-11: tractar fitxer absent o error de lectura amb un missatge comprensible.
-		System.out.println("RA1-ISSUE-03 pendent: encara no s'ha carregat " + f.getPath());
+		System.out.println("ERROR: encara no s'ha carregat " + f.getPath());
 	}
 
 	/**
@@ -319,9 +319,14 @@ public class Shop {
 	 */
 	public void addProduct() {
 		Scanner scanner = CONSOLE;
+		scanner.nextLine();
 		
 		System.out.print("Nom: ");
 		String name = scanner.nextLine();
+		if (findProduct(name) != null) {
+			System.out.println("ERROR: El producte ja existeix al inventari.");
+			return;
+		}
 		System.out.print("Preu: ");
 		double price = Double.parseDouble(scanner.nextLine());
 		System.out.print("Estoc: ");
